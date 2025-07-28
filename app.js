@@ -17,9 +17,10 @@ app.set("view engine", "ejs");
 //this allows the app to parse form data into req.
 app.use(express.urlencoded({ extended: true }));
 
+//router
 app.use("/", indexRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`My first Express app - listening on port ${PORT}!`);
+  console.log(`App listening on port ${PORT}!`);
 });
