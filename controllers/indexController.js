@@ -6,7 +6,20 @@ async function getGames(req, res) {
     res.render("index", { title: "Game Library", games: games })
 }
 
+async function getGameInfo(req, res) {
+    const thisGameId = req.params.gameId;
+    //find that message in database and return it
+    const game = await db.findGame(thisGameId)
+
+    if(game[0] == null) {
+        res.redirect('/404');
+    }
+
+    res.render("gameDetails", { game: game })
+}
+
 module.exports = {
     getGames,
+    getGameInfo
 }
 

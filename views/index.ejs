@@ -5,22 +5,27 @@
     </head>
     <body>
        <h2 class="index-title"><%= title %></h2>
+       <a class="btn-link" href="/genres">Browse by Genre</a>
+       <a class="btn-link" href="/devs">Browse by Developer</a>
        <ul class="games-list">
         <!-- games for each -->
         <% games.forEach((game) => { %>
             <li>
-                <div class="message-block">
+                <div class="game-block">
                     <img class="cover-image" src=<%= game.cover %> alt="Video game cover art">
-                    <h3> <%= game.name %></h3>
-                    <h4><b>Released: </b> <%= game.year %></h4>
-                    <h4><b>Genre(s):
-                    <% game.genres.map((genre) => { %>  
-                        <%=genre + ', ' %>
-                    <% }) %> </b></h4> 
-                    <h4><b>Developer(s):
-                    <% game.developers.map((genre) => { %>  
-                        <%=genre + ', ' %>
-                    <% }) %> </b></h4> 
+                    <div class="game-details">
+                        <h3> <%= game.name %></h3>
+                        <h4><b>Released: </b> <%= game.year %></h4>
+                        <h4><b>Genre(s):
+                        <% game.genres.map((genre) => { %>  
+                            <%=genre + ', ' %>
+                        <% }) %> </b></h4> 
+                        <h4><b>Developer(s):
+                        <% game.developers.map((genre) => { %>  
+                            <%=genre + ', ' %>
+                        <% }) %> </b></h4> 
+                        <a href="/games/<%= game.id %>">See game.</a>
+                    </div>
                 </div>
             </li>
         <% }) %>
