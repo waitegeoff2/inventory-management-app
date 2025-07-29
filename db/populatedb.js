@@ -44,7 +44,7 @@ VALUES
     ('Spelunky 2', '2020', 'https://cdn.thegamesdb.net/images/original/boxart/front/96166-1.jpg'),
     ('Hotline Miami', '2012', 'https://cdn.thegamesdb.net/images/original/boxart/front/13958-1.jpg');
 
-INSERT INTO genres (genre)
+INSERT INTO developers (developer)
 VALUES
 ('FromSoftware'),
 ('Nintendo'),
@@ -59,7 +59,58 @@ VALUES
 ('Blitworks'),
 ('Denton');
 
+INSERT INTO genres (genre)
+VALUES
+('Action'),
+('RPG'),
+('Adventure'),
+('First Person Shooter'),
+('Third Person Shooter'),
+('Sports'),
+('Survival Horror'),
+('Platformer'),
+('Rogue-like'),
+('Strategy'),
+('Puzzle'),
+('Racing');
+
+INSERT INTO games_genres (game_id, genre_id)
+VALUES
+(1, 1),
+(1, 2),
+(2, 2),
+(2, 3),
+(3, 2),
+(3, 3),
+(4, 4),
+(5, 1),
+(5, 3),
+(6, 3),
+(6, 2),
+(7, 6),
+(8, 5),
+(8, 7),
+(9, 8),
+(9, 9),
+(10, 1);
+
+INSERT INTO games_devs (game_id, dev_id)
+VALUES
+(1, 1),
+(2, 2),
+(3, 1), 
+(4, 3), 
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(7, 8),
+(8, 9),
+(9, 10),
+(9, 11),
+(10, 12);
 `;
+
 
 async function main() {
   console.log("seeding...");
