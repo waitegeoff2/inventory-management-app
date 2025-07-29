@@ -1,9 +1,23 @@
 const pool = require("./pool")
 
 async function retrieveGames() {
-    // const { rows } = await pool.query(SELECT STATEMENT WITH INNER JOINS to RETURN game info, genre info, dev info)
-    //need to include a GROUP BY???? so that only the name shows up once with the corresponding other ones
-    
+    const { rows } = await pool.query(`
+        SELECT video_games.name, video_games.year, video_games.cover, ARRAY_AGG(DISTINCT genres.genre) AS genres, ARRAY_AGG(DISTINCT developers.developer) AS developers
+        FROM video_games
+        INNER JOIN games_genres
+        ON video_games.id = games_genres.game_id
+        INNER JOIN genres
+        ON games_genres.genre_id = genres.id
+        INNER JOIN games_devs
+        ON video_games.id = games_devs.game_id
+        INNER JOIN developers
+        ON games_devs.dev_id = developers.id
+        GROUP BY video_games.name, video_games.year, video_games.cover
+        ORDER BY video_games.year`) 
     console.log("games are: ", rows);
     return rows;
+}
+
+module.exports = {
+    retrieveGames,
 }

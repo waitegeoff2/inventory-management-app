@@ -7,16 +7,13 @@
        <h2 class="index-title"><%= title %></h2>
        <ul class="games-list">
         <!-- games for each -->
-        <!-- <% messages.forEach((message) => { %>
+        <% games.forEach((game) => { %>
             <li>
                 <div class="message-block">
-                    <span><b>User:</b> <%= message.username %></span>
-                    <span><b>Message:</b> <%= message.text %></span>
-                    <span><b>Date sent:</b> <%= message.added %></span>
-                    <a href="/messages/<%= message.id %>"><b>See Game Details</b></a>
+                    <img class="cover-image" src=<%= game.cover %> alt="Video game cover art">
                 </div>
             </li>
-        <% }) %> -->
+        <% }) %>
        </ul>
     </body>
 </html>
