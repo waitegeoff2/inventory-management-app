@@ -39,7 +39,16 @@ async function findGame(gameId) {
         // "SELECT * FROM messages WHERE CAST(id as VARCHAR) LIKE $1", [messageId])
 }
 
+async function getGenres() {
+    const { rows } = await pool.query(`
+        SELECT genre
+        FROM genres
+        `)
+    return rows;
+}
+
 module.exports = {
     retrieveGames,
-    findGame
+    findGame,
+    getGenres
 }

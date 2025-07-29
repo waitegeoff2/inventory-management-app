@@ -18,8 +18,14 @@ async function getGameInfo(req, res) {
     res.render("gameDetails", { game: game })
 }
 
+async function showGenres(req, res) {
+    const genres = await db.getGenres();
+    res.send(genres);
+}
+
 module.exports = {
     getGames,
-    getGameInfo
+    getGameInfo,
+    showGenres
 }
 

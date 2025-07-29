@@ -5,7 +5,11 @@ const indexController = require("../controllers/indexController")
 //home page
 indexRouter.get('/', indexController.getGames)
 
-// indexRouter.get('/genres')
+//genres
+
+indexRouter.get('/genres', indexController.showGenres)
+
+// indexRouter.get('/genres/:genreId)
 
 // indexRouter.get('/devs')
 
