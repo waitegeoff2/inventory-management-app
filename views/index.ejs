@@ -11,6 +11,16 @@
             <li>
                 <div class="message-block">
                     <img class="cover-image" src=<%= game.cover %> alt="Video game cover art">
+                    <h3> <%= game.name %></h3>
+                    <h4><b>Released: </b> <%= game.year %></h4>
+                    <h4><b>Genre(s):
+                    <% game.genres.map((genre) => { %>  
+                        <%=genre + ', ' %>
+                    <% }) %> </b></h4> 
+                    <h4><b>Developer(s):
+                    <% game.developers.map((genre) => { %>  
+                        <%=genre + ', ' %>
+                    <% }) %> </b></h4> 
                 </div>
             </li>
         <% }) %>
