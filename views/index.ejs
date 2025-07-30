@@ -5,8 +5,11 @@
     </head>
     <body>
        <h2 class="index-title"><%= title %></h2>
-       <a class="btn-link" href="/genres">Browse by Genre</a>
-       <a class="btn-link" href="/devs">Browse by Developer</a>
+       <a class="btn-link" href="/new">Add New Game</a>
+       <div class="browse-by-category">
+            <a class="btn-link" href="/genres">Browse by Genre</a>
+            <a class="btn-link" href="/devs">Browse by Developer</a>
+       </div>
        <ul class="games-list">
         <!-- games for each -->
         <% games.forEach((game) => { %>
