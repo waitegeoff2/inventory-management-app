@@ -32,13 +32,31 @@ async function showGenre(req, res) {
         res.redirect('/404');
     }
     console.log(gameDetails)
-    res.render("gamesByGenreDev", { title: gameDetails.genre, games: gameDetails })
+    res.render("gamesByGenreDev", { title: gameDetails[0].genres[0], games: gameDetails })
+}
+
+async function showDevelopers(req, res) {
+    const devs = await db.getDevelopers();
+    res.render("allDevs", { devs: devs });
+}
+
+async function showDeveloper(req, res) {
+    const thisDev = req.params.developerId;
+    const gameDetails = await db.getDeveloper(thisDev);
+
+    if(gameDetails[0] == null) {
+        res.redirect('/404');
+    }
+    console.log(gameDetails)
+    res.render("gamesByGenreDev", { title: gameDetails[0].developers[0], games: gameDetails })
 }
 
 module.exports = {
     getGames,
     getGameInfo,
     showGenres,
-    showGenre
+    showGenre, 
+    showDevelopers,
+    showDeveloper
 }
 

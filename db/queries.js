@@ -66,23 +66,37 @@ async function getGenre(genreId) {
     return rows;
 }
 
-//WHERE CAST(genres.id as VARCHAR) LIKE $1
+async function getDevelopers() {
+    const { rows } = await pool.query(`
+        SELECT developer, id
+        FROM developers
+        `)
+    return rows;
+}
 
-// async function getDevelopers() {
-//     const { rows } = await pool.query(`
-//         SELECT developer
-//         FROM developers
-//         `)
-//     return rows;
-// }
-
-// async function getDeveloper() {
-
-// }
+async function getDeveloper(developerId) {
+    const { rows } = await pool.query(`
+        SELECT video_games.id, video_games.name, video_games.year, video_games.cover, ARRAY_AGG(DISTINCT genres.genre) AS genres, ARRAY_AGG(DISTINCT developers.developer) AS developers
+        FROM video_games
+        INNER JOIN games_genres
+        ON video_games.id = games_genres.game_id
+        INNER JOIN genres
+        ON games_genres.genre_id = genres.id
+        INNER JOIN games_devs
+        ON video_games.id = games_devs.game_id
+        INNER JOIN developers
+        ON games_devs.dev_id = developers.id
+        WHERE CAST(developers.id as VARCHAR) LIKE $1
+        GROUP BY video_games.id, video_games.name, video_games.year, video_games.cover
+        `, [developerId])
+    return rows;
+}
 
 module.exports = {
     retrieveGames,
     findGame,
     getGenres, 
-    getGenre
+    getGenre,
+    getDevelopers,
+    getDeveloper
 }

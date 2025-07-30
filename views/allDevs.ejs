@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+        <div class="genre-details">
+            <h2 class="details-title">Browse Game Library By Developer</h2>
+            <div class="genre-buttons">
+                <% devs.forEach((dev) => { %>
+                    <a href="/devs/<%= dev.id %>"><%= dev.developer %></a>
+                <% }) %>
+            </div>
+            <!-- FOR EACH ON THE GENRES, CREATE A BUTTON THAT TAKES THEM TO /genres/:genreID that renders new page with games of that genre -->
+            <a href="/"><b>Back to Home Page.</b></a>  
+        </div>
+    </body>
+</html>
