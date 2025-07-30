@@ -3,14 +3,15 @@
         <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
-        <div class="game-details">
-            <h2 class="details-title">Game Details</h2>
-            <div class="game-detail-box">
-                <img class="cover-image" src=<%= game[0].cover %> alt="Video game cover art">
-                <p><b>User: </b> <%= game[0].name %></p>
-                <p><b>Text: </b> <%= game[0].year %></p>
+        <div class="genre-details">
+            <h2 class="details-title">Browse Game Library By Genre</h2>
+            <div class="genre-buttons">
+                <% genres.forEach((genre) => { %>
+                    <a href="/genres/<%= genre.id %>"><%= genre.genre %></a>
+                <% }) %>
             </div>
-            <a href="/"><b>Back to Message Board</b></a>  
+            <!-- FOR EACH ON THE GENRES, CREATE A BUTTON THAT TAKES THEM TO /genres/:genreID that renders new page with games of that genre -->
+            <a href="/"><b>Back to Home Page.</b></a>  
         </div>
     </body>
 </html>

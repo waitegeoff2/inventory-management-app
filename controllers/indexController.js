@@ -20,12 +20,25 @@ async function getGameInfo(req, res) {
 
 async function showGenres(req, res) {
     const genres = await db.getGenres();
-    res.send(genres);
+    console.log(genres)
+    res.render("allGenres", { genres: genres });
+}
+
+async function showGenre(req, res) {
+    const thisGenre = req.params.genreId;
+    const gameDetails = await db.getGenre(thisGenre);
+
+    if(gameDetails[0] == null) {
+        res.redirect('/404');
+    }
+    console.log(gameDetails)
+    res.render("gamesByGenreDev", { title: gameDetails.genre, games: gameDetails })
 }
 
 module.exports = {
     getGames,
     getGameInfo,
-    showGenres
+    showGenres,
+    showGenre
 }
 

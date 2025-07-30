@@ -9,7 +9,7 @@ indexRouter.get('/', indexController.getGames)
 
 indexRouter.get('/genres', indexController.showGenres)
 
-// indexRouter.get('/genres/:genreId)
+indexRouter.get('/genres/:genreId', indexController.showGenre)
 
 // indexRouter.get('/devs')
 
