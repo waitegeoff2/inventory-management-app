@@ -51,12 +51,20 @@ async function showDeveloper(req, res) {
     res.render("gamesByGenreDev", { title: gameDetails[0].developers[0], games: gameDetails })
 }
 
+async function newGame(req, res) {
+    console.log(req.body)
+    //send to db and update the games section
+    res.end();
+    //REDIRECT TO HOMEPAGE WHERE YOU CAN SEE NEW GAME
+}
+
 module.exports = {
     getGames,
     getGameInfo,
     showGenres,
     showGenre, 
     showDevelopers,
-    showDeveloper
+    showDeveloper,
+    newGame
 }
 
