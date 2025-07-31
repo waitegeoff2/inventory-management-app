@@ -51,11 +51,38 @@ async function showDeveloper(req, res) {
     res.render("gamesByGenreDev", { title: gameDetails[0].developers[0], games: gameDetails })
 }
 
+
+
 async function newGame(req, res) {
     console.log(req.body)
-    //send to db and update the games section
+
+    //add a CHECK GAME function here to exit if game exists
+    
+    let gameName = req.body.gameName;
+    let gameYr = req.body.yearPublished;
+    let genreArr = req.body.genre;
+    let developer = req.body.gameDeveloper;
+    let coverArt = req.body.coverArt;
+
+    console.log(coverArt, gameName, genreArr, gameYr, developer)
+
+    if(coverArt == '') {
+        coverArt = 'vid image';
+    }
+
+    //check if dev exists, if not, add
+    await db.checkDev(developer)
+
+    await db.addGame(gameName, gameYr, coverArt);
+
+    for(const id of genreArr) {
+        await db.linkGenres(id)
+    }
+
+    // await db.linkGenres(genreArr, gameName);
+    
     res.end();
-    //REDIRECT TO HOMEPAGE WHERE YOU CAN SEE NEW GAME
+    // res.redirect('/');
 }
 
 module.exports = {

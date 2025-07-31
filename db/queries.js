@@ -1,3 +1,4 @@
+const { check } = require("express-validator");
 const pool = require("./pool")
 
 async function retrieveGames() {
@@ -92,11 +93,45 @@ async function getDeveloper(developerId) {
     return rows;
 }
 
+async function addGame(name, year, cover) {
+    await pool.query("INSERT INTO video_games (name, year, cover) VALUES ($1, $2, $3)", [name, year, cover])
+}
+
+async function checkDev(dev) {
+    //check if dev exists in database
+    //if not, add to developers db
+    const { rows } = await pool.query("SELECT developer FROM developers")
+    console.log(rows)
+
+    //this didn't work with foreach because that is a function
+    //so the return was only exiting that then adding to db anyways
+    for (let i=0; i<rows.length; i++) {
+        if (rows[i].developer == dev) {
+            return;
+        }
+    }
+
+    await pool.query("INSERT INTO developers (developer) VALUES ($1)", [dev])
+}
+
+async function linkGenres(genre) {
+    const gameId = await pool.query("SELECT MAX(video_games.id) FROM video_games")
+    await pool.query("INSERT INTO games_genres (game_id, genre_id) VALUES ($1, $2)", [gameId, genre])   
+}
+
+async function linkDevs() {
+
+}
+
 module.exports = {
     retrieveGames,
     findGame,
     getGenres, 
     getGenre,
     getDevelopers,
-    getDeveloper
+    getDeveloper,
+    addGame,
+    linkGenres,
+    checkDev,
+    linkDevs
 }

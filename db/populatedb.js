@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS video_games (
     year INT,
     cover VARCHAR ( 2048 )
 );
-
 CREATE TABLE IF NOT EXISTS genres (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     genre VARCHAR ( 255 )   
