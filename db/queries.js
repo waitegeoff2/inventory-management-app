@@ -115,7 +115,9 @@ async function checkDev(dev) {
 }
 
 async function linkGenres(genre) {
-    const gameId = await pool.query("SELECT MAX(video_games.id) FROM video_games")
+    const { rows } = await pool.query("SELECT MAX(video_games.id) FROM video_games")
+    const gameId = rows[0].max.toString();
+    console.log(gameId)
     await pool.query("INSERT INTO games_genres (game_id, genre_id) VALUES ($1, $2)", [gameId, genre])   
 }
 
