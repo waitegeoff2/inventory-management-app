@@ -73,13 +73,15 @@ async function newGame(req, res) {
     //check if dev exists, if not, add
     await db.checkDev(developer)
 
+    //add game to database
     await db.addGame(gameName, gameYr, coverArt);
 
+    //update the links between games and genres
     for(const id of genreArr) {
         await db.linkGenres(id)
     }
 
-    // await db.linkGenres(genreArr, gameName);
+    //link the game and developer databases
     
     res.end();
     // res.redirect('/');

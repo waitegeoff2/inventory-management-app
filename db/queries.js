@@ -121,7 +121,7 @@ async function linkGenres(genre) {
     await pool.query("INSERT INTO games_genres (game_id, genre_id) VALUES ($1, $2)", [gameId, genre])   
 }
 
-async function linkDevs() {
+async function linkDevs() {ß
 
 }
 
