@@ -65,8 +65,7 @@ async function newGame(req, res) {
     let developer = req.body.gameDeveloper;
     let coverArt = req.body.coverArt;
 
-    console.log(coverArt, gameName, genreArr, gameYr, developer)
-
+    //if cover art not added, add generic image
     if(coverArt == '') {
         coverArt = 'vid image';
     }
@@ -74,7 +73,6 @@ async function newGame(req, res) {
     //check if dev exists, if not, add
     await db.checkDev(developer)
 
-    console.log(developer)
     //add game to database
     await db.addGame(gameName, gameYr, coverArt);
 
@@ -83,12 +81,10 @@ async function newGame(req, res) {
         await db.linkGenres(id)
     }
 
+    //update link between game and dev
     await db.linkDevs(developer)
-
-    //link the game and developer databases
     
-    res.end();
-    // res.redirect('/');
+    res.redirect('/');
 }
 
 module.exports = {
