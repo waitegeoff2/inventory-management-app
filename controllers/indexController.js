@@ -1,4 +1,5 @@
 const db = require("../db/queries")
+const pool = require("../db/pool")
 
 async function getGames(req, res) {
     const games = await db.retrieveGames();
@@ -73,6 +74,7 @@ async function newGame(req, res) {
     //check if dev exists, if not, add
     await db.checkDev(developer)
 
+    console.log(developer)
     //add game to database
     await db.addGame(gameName, gameYr, coverArt);
 
@@ -80,6 +82,8 @@ async function newGame(req, res) {
     for(const id of genreArr) {
         await db.linkGenres(id)
     }
+
+    await db.linkDevs(developer)
 
     //link the game and developer databases
     

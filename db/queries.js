@@ -117,12 +117,18 @@ async function checkDev(dev) {
 async function linkGenres(genre) {
     const { rows } = await pool.query("SELECT MAX(video_games.id) FROM video_games")
     const gameId = rows[0].max.toString();
-    console.log(gameId)
     await pool.query("INSERT INTO games_genres (game_id, genre_id) VALUES ($1, $2)", [gameId, genre])   
 }
 
-async function linkDevs() {ß
-
+async function linkDevs(dev) {
+    //find dev id
+    const { rows } = await pool.query("SELECT developers.id FROM developers WHERE developer=($1)", [dev])
+    const gameValue = await pool.query("SELECT MAX(video_games.id) FROM video_games")
+    console.log(rows[0].id.toString())
+    console.log(gameValue.rows[0].max.toString())
+    // await pool.query("INSERT INTO games_devs (game_id, dev_id) VALUES ($1, $2)", [gameId, devId]) 
+    // await 
+    // const gameId = rows[0].max.toString();
 }
 
 module.exports = {
