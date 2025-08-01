@@ -3,6 +3,7 @@ const pool = require("../db/pool")
 
 async function getGames(req, res) {
     const games = await db.retrieveGames();
+    console.log(games)
     // res.send(games)
     res.render("index", { title: "Game Library", games: games })
 }
@@ -11,6 +12,7 @@ async function getGameInfo(req, res) {
     const thisGameId = req.params.gameId;
     //find that message in database and return it
     const game = await db.findGame(thisGameId)
+    console.log(game)
 
     if(game[0] == null) {
         res.redirect('/404');
@@ -89,7 +91,27 @@ async function newGame(req, res) {
 }
 
 //update game USE SAME FORM
-//async function updateGame(req, res) {}
+async function editGameForm(req, res) {
+    const gameId = req.params.gameId;
+    const game = await db.findGame(gameId);
+    const genres = await db.getGenres();
+
+    if(game[0] == null) {
+        res.redirect('/404');
+    }
+
+    console.log(game)
+    console.log(genres)
+
+    res.render('editGame', { game: game, genres: genres })
+
+}
+
+async function editGame(req, res) { 
+    console.log(req.body)
+
+    res.end()
+}
 
 module.exports = {
     getGames,
@@ -99,6 +121,8 @@ module.exports = {
     showDevelopers,
     showDeveloper,
     newGameForm,
-    newGame
+    newGame, 
+    editGameForm,
+    editGame
 }
 

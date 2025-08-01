@@ -26,8 +26,11 @@
                         <h4><b>Developer(s):
                         <% game.developers.map((genre) => { %>  
                             <%=genre + ', ' %>
-                        <% }) %> </b></h4> 
-                        <a href="/games/<%= game.id %>">See game.</a>
+                        <% }) %> </b></h4>
+                        <div class="game-links">
+                            <a href="/edit/<%= game.id %>">Edit details</a> 
+                            <a href="/games/<%= game.id %>">See game.</a>
+                        </div>
                     </div>
                 </div>
             </li>

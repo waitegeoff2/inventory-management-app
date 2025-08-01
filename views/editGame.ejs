@@ -1,0 +1,29 @@
+<!-- Form to add a new game -->
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h2>Edit <%= game[0].name %></h2>
+    <form class="new-game-form" method="POST" action="/new">
+      <label for="gameName"><b>Name:</b></label>
+      <input type="text" id="gameName" name="gameName" placeholder="<%= game[0].name %>" />
+      <label for="yearPublished"><b>Year Published:</b></label>
+      <input type="number" id="yearPublished" name="yearPublished" placeholder="<%= game[0].year %>" />
+      <fieldset class="genre-checkbox">
+        <legend>Select Genre:</legend>
+        <div class="genre-checkboxes">
+            <% genres.forEach((genre) => { %>
+                <input type="checkbox" id="<%= genre.id %>" name="genre" value="<%= genre.id %>">
+                <label for="<%= genre.id %>"><%= genre.genre %></label>
+            <% }) %>
+        </div>
+      </fieldset>
+      <label for="gameDeveloper">Game developer: </label>
+      <input type="text" id="gameDeveloper" name="gameDeveloper" placeholder="<%= game[0].developers %>" />
+      <label for="coverArt">Cover Art (optional): </label>
+      <input type="text" id="coverArt" name="coverArt" placeholder="<%= game[0].cover %>"/>
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+</html>
