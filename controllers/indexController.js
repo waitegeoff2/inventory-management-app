@@ -21,7 +21,6 @@ async function getGameInfo(req, res) {
 
 async function showGenres(req, res) {
     const genres = await db.getGenres();
-    console.log(genres)
     res.render("allGenres", { genres: genres });
 }
 
@@ -52,12 +51,14 @@ async function showDeveloper(req, res) {
     res.render("gamesByGenreDev", { title: gameDetails[0].developers[0], games: gameDetails })
 }
 
-
+async function newGameForm(req, res) {
+    const genres = await db.getGenres();
+    res.render('form', { genres: genres })
+}
 
 async function newGame(req, res) {
-    console.log(req.body)
 
-    //add a CHECK GAME function here to exit if game exists
+    //****add a CHECK GAME function here to exit if game exists
     
     let gameName = req.body.gameName;
     let gameYr = req.body.yearPublished;
@@ -87,6 +88,9 @@ async function newGame(req, res) {
     res.redirect('/');
 }
 
+//update game USE SAME FORM
+//async function updateGame(req, res) {}
+
 module.exports = {
     getGames,
     getGameInfo,
@@ -94,6 +98,7 @@ module.exports = {
     showGenre, 
     showDevelopers,
     showDeveloper,
+    newGameForm,
     newGame
 }
 

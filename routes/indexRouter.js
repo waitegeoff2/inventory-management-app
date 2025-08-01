@@ -19,9 +19,10 @@ indexRouter.get('/devs', indexController.showDevelopers)
 indexRouter.get('/devs/:developerId', indexController.showDeveloper)
 
 //new game
-indexRouter.get('/new', (req, res) => res.render('form'))
+indexRouter.get('/new', indexController.newGameForm)
 indexRouter.post('/new', indexController.newGame)
-// indexRouter.post('/new', indexController)
+
+//UPDATE GAME
 
 //404
 indexRouter.get('/404', (req, res) => res.render('404'))

@@ -103,8 +103,7 @@ async function checkDev(dev) {
     const { rows } = await pool.query("SELECT developer FROM developers")
     console.log(rows)
 
-    //this didn't work with foreach because that is a function
-    //so the return was only exiting that then adding to db anyways
+    //this didn't work with foreach because that is a function so returns exits just that
     for (let i=0; i<rows.length; i++) {
         if (rows[i].developer == dev) {
             return;
@@ -117,8 +116,6 @@ async function checkDev(dev) {
 async function linkGenres(genre) {
     const { rows } = await pool.query("SELECT MAX(video_games.id) FROM video_games")
     const gameId = rows[0].max.toString();
-    console.log(gameId)
-    console.log(genre)
     await pool.query("INSERT INTO games_genres (game_id, genre_id) VALUES ($1, $2)", [gameId, genre])   
 }
 
@@ -131,6 +128,7 @@ async function linkDevs(dev) {
 
     //add values into db linking game id with dev id
     await pool.query("INSERT INTO games_devs (game_id, dev_id) VALUES ($1, $2)", [gameId, devId]) 
+
 }
 
 module.exports = {
