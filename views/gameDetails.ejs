@@ -9,8 +9,16 @@
             <h2 class="details-title">Game Details: <%= game[0].name %></game></h2>
             <div class="game-detail-box">
                 <img class="cover-image" src=<%= game[0].cover %> alt="Video game cover art">
-                <p><b>User: </b> <%= game[0].name %></p>
-                <p><b>Text: </b> <%= game[0].year %></p>
+                <p><b>Title: </b> <%= game[0].name %></p>
+                <p><b>Year released: </b> <%= game[0].year %></p>
+                <h4><b>Genre(s):
+                <% game[0].genres.map((genre) => { %>  
+                    <%=genre + ', ' %>
+                <% }) %> </b></h4> 
+                <h4><b>Developer(s):
+                <% game[0].developers.map((genre) => { %>  
+                    <%=genre + ', ' %>
+                <% }) %> </b></h4>
             </div>
             <a href="/edit"></a>
             <a href="/"><b>Back to Game Library.</b></a>  

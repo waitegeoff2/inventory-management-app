@@ -3,6 +3,42 @@ body {
     padding: 0;
 }
 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    background-color: rgb(10, 53, 57);
+    box-shadow: 0px 3px 5px grey;
+}
+
+.header-link {
+    text-decoration: none;
+}
+
+.header-title {
+  color: rgb(49, 243, 6);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 40pt;
+  font-style: italic;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow:
+    0 0 0px #fff,
+    0 0 0px #fff,
+    0 0 0px #fff,
+    0 0 20px #0fa,
+    0 0 20px #0fa,
+    0 0 60px #0fa,
+    0 0 70px #0fa,
+    0 0 80px #0fa;
+}
+
+.games-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .cover-image {
     width: 210px;
     height: 300px;

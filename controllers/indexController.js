@@ -16,6 +16,8 @@ async function getGameInfo(req, res) {
         res.redirect('/404');
     }
 
+    console.log(game)
+
     res.render("gameDetails", { game: game })
 }
 
