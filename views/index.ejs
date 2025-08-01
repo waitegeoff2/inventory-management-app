@@ -21,7 +21,6 @@
                     <img class="cover-image" src=<%= game.cover %> alt="Video game cover art">
                     <div class="game-details">
                         <h3> <%= game.name %></h3>
-                        <h4><b>Released: </b> <%= game.year %></h4>
                         <h4><b>Genre(s):
                         <% game.genres.map((genre) => { %>  
                             <%=genre + ', ' %>
@@ -31,9 +30,11 @@
                             <%=genre + ', ' %>
                         <% }) %> </b></h4>
                         <div class="game-links">
-                            <a href="/edit/<%= game.id %>">Edit details</a> 
-                            <a href="/delete/<%= game.id %>">Delete game.</a>
-                            <a href="/games/<%= game.id %>">See game.</a>
+                            <a href="/games/<%= game.id %>">More info.</a>
+                            <div class="edit-delete">
+                                <a href="/edit/<%= game.id %>">Edit details</a> 
+                                <a href="/delete/<%= game.id %>">Delete game.</a>
+                            </div>
                         </div>
                     </div>
                 </div>
