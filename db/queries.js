@@ -15,7 +15,6 @@ async function retrieveGames() {
         ON games_devs.dev_id = developers.id
         GROUP BY video_games.id, video_games.name, video_games.year, video_games.cover
         ORDER BY video_games.year`) 
-    console.log("games are: ", rows);
     return rows;
 }
 
@@ -119,6 +118,14 @@ async function linkGenres(genre) {
     await pool.query("INSERT INTO games_genres (game_id, genre_id) VALUES ($1, $2)", [gameId, genre])   
 }
 
+async function linkGenresDeleteEdit(gameId) {
+    await pool.query("DELETE FROM games_genres WHERE game_id=$1", [gameId])
+}
+
+async function linkGenresEdit(gameId, genre) {
+    await pool.query("INSERT INTO games_genres (game_id, genre_id) VALUES ($1, $2)", [gameId, genre])
+}
+
 async function linkDevs(dev) {
     //query to find the id of this developer and the most recently added game
     const { rows } = await pool.query("SELECT developers.id FROM developers WHERE developer=($1)", [dev])
@@ -131,6 +138,18 @@ async function linkDevs(dev) {
 
 }
 
+async function linkDevsEdit(gameId, dev) {
+    const { rows } = await pool.query("SELECT developers.id FROM developers WHERE developer=($1)", [dev])
+    const devId = rows[0].id.toString();
+    await pool.query("DELETE FROM games_devs WHERE game_id=$1", [gameId])
+    await pool.query("INSERT INTO games_devs (game_id, dev_id) VALUES ($1, $2)", [gameId, devId]) 
+}
+
+async function editGameDetails(id, name, year, cover) {
+    console.log(id, name, year, cover)
+    await pool.query("UPDATE video_games SET name=$1, year=$2, cover=$3 WHERE id=$4", [name, year, cover, id])
+}
+
 module.exports = {
     retrieveGames,
     findGame,
@@ -141,5 +160,9 @@ module.exports = {
     addGame,
     linkGenres,
     checkDev,
-    linkDevs
+    linkDevs,
+    editGameDetails, 
+    linkGenresEdit,
+    linkDevsEdit,
+    linkGenresDeleteEdit
 }

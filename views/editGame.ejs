@@ -1,11 +1,10 @@
-<!-- Form to add a new game -->
 <html>
   <head>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <h2>Edit <%= game[0].name %></h2>
-    <form class="new-game-form" method="POST" action="/new">
+    <form class="new-game-form" method="POST" action="/edit/:gameId">
       <label for="gameName"><b>Name:</b></label>
       <input type="text" id="gameName" name="gameName" placeholder="<%= game[0].name %>" />
       <label for="yearPublished"><b>Year Published:</b></label>
@@ -23,6 +22,7 @@
       <input type="text" id="gameDeveloper" name="gameDeveloper" placeholder="<%= game[0].developers %>" />
       <label for="coverArt">Cover Art (optional): </label>
       <input type="text" id="coverArt" name="coverArt" placeholder="<%= game[0].cover %>"/>
+      <input type="hidden" name="gameHiddenId" value="<%= game[0].id %>">
       <input type="submit" value="submit" />
     </form>
   </body>

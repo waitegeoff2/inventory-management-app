@@ -3,7 +3,6 @@ const pool = require("../db/pool")
 
 async function getGames(req, res) {
     const games = await db.retrieveGames();
-    console.log(games)
     // res.send(games)
     res.render("index", { title: "Game Library", games: games })
 }
@@ -12,7 +11,6 @@ async function getGameInfo(req, res) {
     const thisGameId = req.params.gameId;
     //find that message in database and return it
     const game = await db.findGame(thisGameId)
-    console.log(game)
 
     if(game[0] == null) {
         res.redirect('/404');
@@ -33,7 +31,6 @@ async function showGenre(req, res) {
     if(gameDetails[0] == null) {
         res.redirect('/404');
     }
-    console.log(gameDetails)
     res.render("gamesByGenreDev", { title: gameDetails[0].genres[0], games: gameDetails })
 }
 
@@ -49,7 +46,6 @@ async function showDeveloper(req, res) {
     if(gameDetails[0] == null) {
         res.redirect('/404');
     }
-    console.log(gameDetails)
     res.render("gamesByGenreDev", { title: gameDetails[0].developers[0], games: gameDetails })
 }
 
@@ -100,7 +96,6 @@ async function editGameForm(req, res) {
         res.redirect('/404');
     }
 
-    console.log(game)
     console.log(genres)
 
     res.render('editGame', { game: game, genres: genres })
@@ -110,7 +105,34 @@ async function editGameForm(req, res) {
 async function editGame(req, res) { 
     console.log(req.body)
 
-    res.end()
+    let gameName = req.body.gameName;
+    let gameYr = req.body.yearPublished;
+    let genreArr = req.body.genre;
+    let gameDev = req.body.gameDeveloper;
+    let cover = req.body.coverArt;
+    let gameId = req.body.gameHiddenId;
+
+    if(cover == '') {
+        cover = 'vid image';
+    }
+
+    //check if dev exists, if not, add
+    await db.checkDev(gameDev)
+
+    //edit the game
+    await db.editGameDetails(gameId, gameName, gameYr, cover)
+
+    //delete old genre links
+    await db.linkGenresDeleteEdit(gameId)
+
+    for(const id of genreArr) {
+        console.log(id)
+        await db.linkGenresEdit(gameId, id)
+    }
+
+    await db.linkDevsEdit(gameId, gameDev)
+
+    res.redirect('/')
 }
 
 module.exports = {
