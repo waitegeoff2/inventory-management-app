@@ -26,6 +26,9 @@ indexRouter.post('/new', indexController.newGame)
 indexRouter.get('/edit/:gameId', indexController.editGameForm)
 indexRouter.post('/edit/:gameId', indexController.editGame)
 
+//delete game
+indexRouter.get('/delete/:gameId', indexController.deleteGame)
+
 //404
 indexRouter.get('/404', (req, res) => res.render('404'))
 

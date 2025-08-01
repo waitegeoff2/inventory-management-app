@@ -150,6 +150,10 @@ async function editGameDetails(id, name, year, cover) {
     await pool.query("UPDATE video_games SET name=$1, year=$2, cover=$3 WHERE id=$4", [name, year, cover, id])
 }
 
+async function eraseGame(gameId) {
+    await pool.query("DELETE FROM video_games WHERE id=$1", [gameId])
+}
+
 module.exports = {
     retrieveGames,
     findGame,
@@ -164,5 +168,6 @@ module.exports = {
     editGameDetails, 
     linkGenresEdit,
     linkDevsEdit,
-    linkGenresDeleteEdit
+    linkGenresDeleteEdit,
+    eraseGame
 }

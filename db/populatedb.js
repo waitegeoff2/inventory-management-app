@@ -21,14 +21,14 @@ CREATE TABLE IF NOT EXISTS developers (
 
 CREATE TABLE IF NOT EXISTS games_genres (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    game_id INTEGER REFERENCES video_games(id),
-    genre_id INTEGER REFERENCES genres(id)
+    game_id INTEGER REFERENCES video_games(id) ON DELETE CASCADE,
+    genre_id INTEGER REFERENCES genres(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS games_devs (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    game_id INTEGER REFERENCES video_games(id),
-    dev_id INTEGER REFERENCES developers(id)
+    game_id INTEGER REFERENCES video_games(id) ON DELETE CASCADE,
+    dev_id INTEGER REFERENCES developers(id) ON DELETE CASCADE
 );
 
 INSERT INTO video_games (name, year, cover)

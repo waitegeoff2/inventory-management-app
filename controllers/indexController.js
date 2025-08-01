@@ -125,14 +125,23 @@ async function editGame(req, res) {
     //delete old genre links
     await db.linkGenresDeleteEdit(gameId)
 
+    //add new genre links
     for(const id of genreArr) {
         console.log(id)
         await db.linkGenresEdit(gameId, id)
     }
 
+    //add new dev links
     await db.linkDevsEdit(gameId, gameDev)
 
     res.redirect('/')
+}
+
+async function deleteGame (req, res) {
+    const gameId = req.params.gameId;    
+    await db.eraseGame(gameId);
+
+    res.redirect('/');
 }
 
 module.exports = {
@@ -145,6 +154,7 @@ module.exports = {
     newGameForm,
     newGame, 
     editGameForm,
-    editGame
+    editGame,
+    deleteGame
 }
 

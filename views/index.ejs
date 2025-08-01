@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
+       <%- include('partials/header.ejs') %>
        <h2 class="index-title"><%= title %></h2>
        <a class="btn-link" href="/new">Add New Game</a>
        <div class="browse-by-category">
@@ -29,6 +30,7 @@
                         <% }) %> </b></h4>
                         <div class="game-links">
                             <a href="/edit/<%= game.id %>">Edit details</a> 
+                            <a href="/delete/<%= game.id %>">Delete game.</a>
                             <a href="/games/<%= game.id %>">See game.</a>
                         </div>
                     </div>
