@@ -5,23 +5,23 @@
     </head>
     <body>
         <%- include('partials/header.ejs') %>
-        <div class="game-details">
+        <div class="game-details-page">
             <h2 class="details-title">Game Details: <%= game[0].name %></game></h2>
             <div class="game-block">
                 <img class="cover-image" src=<%= game[0].cover %> alt="Video game cover art">
                 <p><b>Title: </b> <%= game[0].name %></p>
                 <p><b>Released: </b> <%= game[0].year %></p>
-                <h4><b>Genre(s):
+                <h4><b>Genre(s): </b>
                 <% game[0].genres.map((genre) => { %>  
                     <%=genre + ', ' %>
-                <% }) %> </b></h4> 
-                <h4><b>Developer(s):
+                <% }) %> </h4> 
+                <h4><b>Developer(s): </b>
                 <% game[0].developers.map((genre) => { %>  
                     <%=genre + ', ' %>
-                <% }) %> </b></h4>
+                <% }) %> </h4>
             </div>
             <a href="/edit"></a>
-            <a href="/"><b>Back to Game Library.</b></a>  
+            <a class="details-btn" href="/"><b>Back to Game Library.</b></a>  
         </div>
     </body>
 </html>
