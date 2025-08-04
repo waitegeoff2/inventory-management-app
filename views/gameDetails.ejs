@@ -10,7 +10,7 @@
             <div class="game-detail-box">
                 <img class="cover-image" src=<%= game[0].cover %> alt="Video game cover art">
                 <p><b>Title: </b> <%= game[0].name %></p>
-                <p><b>Year released: </b> <%= game[0].year %></p>
+                <p><b>Released: </b> <%= game[0].year %></p>
                 <h4><b>Genre(s):
                 <% game[0].genres.map((genre) => { %>  
                     <%=genre + ', ' %>

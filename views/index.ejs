@@ -30,10 +30,10 @@
                             <%=genre + ', ' %>
                         <% }) %> </b></h4>
                         <div class="game-links">
-                            <a href="/games/<%= game.id %>">More info.</a>
+                            <a class="a-button" id="more-info" href="/games/<%= game.id %>">More info</a>
                             <div class="edit-delete">
-                                <a href="/edit/<%= game.id %>">Edit details</a> 
-                                <a href="/delete/<%= game.id %>">Delete game.</a>
+                                <a class="a-button" href="/edit/<%= game.id %>">Edit details</a> 
+                                <a class="a-button" href="/delete/<%= game.id %>">Delete game</a>
                             </div>
                         </div>
                     </div>

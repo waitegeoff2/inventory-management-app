@@ -88,7 +88,6 @@ async function newGame(req, res) {
     res.redirect('/');
 }
 
-//update game USE SAME FORM
 async function editGameForm(req, res) {
     const gameId = req.params.gameId;
     const game = await db.findGame(gameId);
@@ -101,7 +100,6 @@ async function editGameForm(req, res) {
     console.log(genres)
 
     res.render('editGame', { game: game, genres: genres })
-
 }
 
 async function editGame(req, res) { 
@@ -133,7 +131,7 @@ async function editGame(req, res) {
         await db.linkGenresEdit(gameId, id)
     }
 
-    //add new dev links
+    //add/delete new dev links
     await db.linkDevsEdit(gameId, gameDev)
 
     res.redirect('/')
