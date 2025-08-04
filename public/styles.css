@@ -35,6 +35,18 @@ header {
     0 0 80px #0fa;
 }
 
+.top-area {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.index-title {
+    align-self: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
 .games-list {
     display: flex;
     flex-wrap: wrap;
@@ -47,7 +59,7 @@ header {
     flex-direction: column;
     width: 250px;
     height: 540px;
-    background-color: rgb(244, 255, 84);
+    background-color: rgb(255, 84, 244);
     border: 2px solid black;
     border-radius: 5px;
     padding: 8px;
@@ -65,7 +77,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
 }
 
 #more-info {
@@ -73,10 +85,10 @@ header {
 }
 
 .a-button { 
-    background-color: #00f7ff; 
+    background-color: #00cfd6; 
     color: rgb(0, 0, 0); 
     text-decoration: none;
-    border: none; 
+    border: 0.5px solid black; 
     padding: 5px; 
     border-radius: 5px; 
     font-size: 15px; 
