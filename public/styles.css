@@ -190,3 +190,15 @@ header {
     padding-left: 20px;
     align-items: center;
 }
+
+/* Game FORMS */
+
+.new-game-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 20px;
+    justify-self: center;
+    font-family: Arial, Helvetica, sans-serif;
+    gap: 3px;
+}

@@ -11,7 +11,7 @@
       <label for="yearPublished"><b>Year Published:</b></label>
       <input type="number" id="yearPublished" name="yearPublished" />
       <fieldset class="genre-checkbox">
-        <legend>Select Genre:</legend>
+        <legend><b>Select Genre:</b></legend>
         <div class="genre-checkboxes">
             <% genres.forEach((genre) => { %>
                 <input type="checkbox" id="<%= genre.id %>" name="genre" value="<%= genre.id %>">
@@ -44,11 +44,11 @@
         <input type="checkbox" id="12" name="genre" value="12">
         <label for="12">Racing</label> -->
       </fieldset>
-      <label for="gameDeveloper">Game developer: </label>
+      <label for="gameDeveloper"><b>Game developer: </b></label>
       <input type="text" id="gameDeveloper" name="gameDeveloper">
-      <label for="coverArt">Cover Art (optional): </label>
+      <label for="coverArt"><b>Cover Art (optional): </b></label>
       <input type="text" id="coverArt" name="coverArt">
-      <input type="submit" value="submit" />
+      <input class="details-btn" type="submit" value="submit" />
     </form>
   </body>
 </html>
