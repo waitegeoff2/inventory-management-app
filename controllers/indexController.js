@@ -14,7 +14,6 @@ const validateUser = [
 
 async function getGames(req, res) {
     const games = await db.retrieveGames();
-    // res.send(games)
     res.render("index", { title: "Game Library", games: games })
 }
 
@@ -77,7 +76,7 @@ const newGame = [
       });
     }
 
-    //****add a CHECK GAME function here to exit if game exists
+    //****add a CHECK GAME function here to exit if game already exists
     
     let gameName = req.body.gameName;
     let gameYr = req.body.yearPublished;

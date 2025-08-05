@@ -8,13 +8,11 @@ indexRouter.get('/', indexController.getGames)
 //get game based on ID
 indexRouter.get('/games/:gameId', indexController.getGameInfo)
 
-//genres
-
+//browse by genres
 indexRouter.get('/genres', indexController.showGenres)
 indexRouter.get('/genres/:genreId', indexController.showGenre)
 
-//developers
-
+//browse by developers
 indexRouter.get('/devs', indexController.showDevelopers)
 indexRouter.get('/devs/:developerId', indexController.showDeveloper)
 
@@ -22,7 +20,7 @@ indexRouter.get('/devs/:developerId', indexController.showDeveloper)
 indexRouter.get('/new', indexController.newGameForm)
 indexRouter.post('/new', indexController.newGame)
 
-//UPDATE GAME
+//edit game
 indexRouter.get('/edit/:gameId', indexController.editGameForm)
 indexRouter.post('/edit/:gameId', indexController.editGame)
 
@@ -31,11 +29,5 @@ indexRouter.get('/delete/:gameId', indexController.deleteGame)
 
 //404
 indexRouter.get('/404', (req, res) => res.render('404'))
-
-//new game form (get to render form, POST to update game db)
-
-//browse by genre
-
-//browse by dev
 
 module.exports = indexRouter;
