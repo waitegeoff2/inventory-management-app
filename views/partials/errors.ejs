@@ -1,6 +1,6 @@
 <!-- list the errors if the form isn't validated -->
 <% if (locals.errors) {%>
-  <ul>
+  <ul class="errors-list">
     <% errors.forEach(function(error) { %>
       <li><%= error.msg %></li>
     <% }); %>

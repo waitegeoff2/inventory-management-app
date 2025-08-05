@@ -27,8 +27,6 @@ async function getGameInfo(req, res) {
         res.redirect('/404');
     }
 
-    console.log(game)
-
     res.render("gameDetails", { game: game })
 }
 
@@ -141,7 +139,6 @@ const editGame = [
     let gameYr = req.body.yearPublished;
     let genreArr = req.body.genre;
     let gameDev = req.body.gameDeveloper;
-    console.log(gameName)
     let cover = req.body.coverArt;
     let gameId = req.body.gameHiddenId;
 
@@ -160,7 +157,6 @@ const editGame = [
 
     //add new genre links
     for(const id of genreArr) {
-        console.log(id)
         await db.linkGenresEdit(gameId, id)
     }
 
