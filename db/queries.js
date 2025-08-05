@@ -34,7 +34,6 @@ async function findGame(gameId) {
         WHERE CAST(video_games.id as VARCHAR) LIKE $1
         GROUP BY video_games.id, video_games.name, video_games.year, video_games.cover
         `, [gameId])
-    console.log("rows: ", rows)
     return rows;
         // "SELECT * FROM messages WHERE CAST(id as VARCHAR) LIKE $1", [messageId])
 }
@@ -44,7 +43,6 @@ async function getGenres() {
         SELECT genre, id
         FROM genres
         `)
-    console.log(rows)
     return rows;
 }
 
@@ -104,6 +102,7 @@ async function checkDev(dev) {
 
     //this didn't work with foreach because that is a function so returns exits just that
     for (let i=0; i<rows.length; i++) {
+        // need to turn both of these variable into TRIMMED AND LOWER CASE
         if (rows[i].developer == dev) {
             return;
         }

@@ -1,5 +1,16 @@
 const db = require("../db/queries")
-const pool = require("../db/pool")
+const { body, validationResult } = require("express-validator");
+
+const alphaErr = "must only contain letters.";
+const lengthErr = "must be between 1 and 50 characters.";
+const numErr = "must be a year after 1950."
+
+const validateUser = [
+    body("gameName").trim()
+    .isLength({ min: 1, max: 50 }).withMessage(`Game name ${lengthErr}`),
+    body("yearPublished").trim()
+    .isInt({ min: 1950 }).withMessage(`Year ${numErr}`)
+]
 
 async function getGames(req, res) {
     const games = await db.retrieveGames();
@@ -56,7 +67,17 @@ async function newGameForm(req, res) {
     res.render('form', { genres: genres })
 }
 
-async function newGame(req, res) {
+const newGame = [
+    validateUser,
+    async(req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const genres = await db.getGenres();
+      return res.status(400).render("form", {
+        errors: errors.array(),
+        genres: genres
+      });
+    }
 
     //****add a CHECK GAME function here to exit if game exists
     
@@ -87,6 +108,7 @@ async function newGame(req, res) {
     
     res.redirect('/');
 }
+]
 
 async function editGameForm(req, res) {
     const gameId = req.params.gameId;
@@ -97,18 +119,29 @@ async function editGameForm(req, res) {
         res.redirect('/404');
     }
 
-    console.log(genres)
-
     res.render('editGame', { game: game, genres: genres })
 }
 
-async function editGame(req, res) { 
-    console.log(req.body)
+const editGame = [ 
+    validateUser,
+    async(req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      const gameId = req.body.gameHiddenId;
+      const game = await db.findGame(gameId);
+      const genres = await db.getGenres();
+      return res.status(400).render("editGame", {
+        errors: errors.array(),
+        game: game,
+        genres: genres
+      });
+    }
 
     let gameName = req.body.gameName;
     let gameYr = req.body.yearPublished;
     let genreArr = req.body.genre;
     let gameDev = req.body.gameDeveloper;
+    console.log(gameName)
     let cover = req.body.coverArt;
     let gameId = req.body.gameHiddenId;
 
@@ -136,6 +169,7 @@ async function editGame(req, res) {
 
     res.redirect('/')
 }
+]
 
 async function deleteGame (req, res) {
     const gameId = req.params.gameId;    
@@ -152,7 +186,7 @@ module.exports = {
     showDevelopers,
     showDeveloper,
     newGameForm,
-    newGame, 
+    newGame,
     editGameForm,
     editGame,
     deleteGame

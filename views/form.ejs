@@ -5,6 +5,8 @@
   </head>
   <body>
     <%- include('partials/header.ejs') %>
+    <h1>New Game Form</h1>
+    <%- include("partials/errors.ejs") %>
     <form class="new-game-form" method="POST" action="/new">
       <label for="gameName"><b>Name:</b></label>
       <input type="text" id="gameName" name="gameName" />
