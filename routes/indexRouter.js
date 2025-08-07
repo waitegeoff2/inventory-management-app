@@ -15,6 +15,7 @@ indexRouter.get('/genres/:genreId', indexController.showGenre)
 //browse by developers
 indexRouter.get('/devs', indexController.showDevelopers)
 indexRouter.get('/devs/:developerId', indexController.showDeveloper)
+indexRouter.get('/noDevs', (req, res) => res.render('noDevs'))
 
 //new game
 indexRouter.get('/new', indexController.newGameForm)

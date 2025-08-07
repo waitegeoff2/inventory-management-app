@@ -223,3 +223,15 @@ header {
     font-family: Arial, Helvetica, sans-serif;
     color: red;
 }
+
+/* no devs page */
+
+.no-dev {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+}
+
+.dev-title {
+    font-family: Arial, Helvetica, sans-serif;
+}

@@ -54,7 +54,7 @@ async function showDeveloper(req, res) {
     const gameDetails = await db.getDeveloper(thisDev);
 
     if(gameDetails[0] == null) {
-        res.redirect('/404');
+        res.redirect('/noDevs');
     }
     res.render("gamesByGenreDev", { title: gameDetails[0].developers[0], games: gameDetails })
 }
